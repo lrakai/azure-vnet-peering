@@ -1,0 +1,5 @@
+$Lab=vnet-peering-lab
+$Region=WestUS2
+Login-AzureRmAccount
+New-AzureRmResourceGroup -Name $Lab -Location $Region
+New-AzureRmResourceGroupDeployment -Name lab-resources -ResourceGroupName $Lab -TemplateParameterFile .\infrastructure\arm-template.json
