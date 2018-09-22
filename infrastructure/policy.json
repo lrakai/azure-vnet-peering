@@ -1,13 +1,5 @@
 {
     "parameters": {
-        "allowedLocations": {
-            "type": "array",
-            "metadata": {
-                "description": "The list of locations that can be specified when deploying resources",
-                "strongType": "location",
-                "displayName": "Allowed locations"
-            }
-        },
         "allowedServices": {
             "type": "array",
             "metadata": {
@@ -23,8 +15,8 @@
             }
         }
     },
-    "displayName": "Allowed locations, services, and VM SKUs",
-    "description": "This policy restrict the allowed locations, services, and VM SKUs.",
+    "displayName": "Allowed services, and VM SKUs",
+    "description": "This policy restrict the allowedservices, and VM SKUs.",
     "policyRule": {
         "if": {
             "anyOf": [
@@ -32,12 +24,6 @@
                     "not": {
                         "field": "type",
                         "in": "[parameters('allowedServices')]"
-                    }
-                },
-                {
-                    "not": {
-                        "field": "location",
-                        "in": "[parameters('allowedLocations')]"
                     }
                 },
                 {
@@ -61,11 +47,6 @@
         }
     },
     "parameters_values": {
-        "allowedLocations": {
-            "value": [
-                "{RGLocation}"
-            ]
-        },
         "allowedServices": {
             "value": [
                 "Microsoft.Compute/virtualMachines",
@@ -74,7 +55,8 @@
                 "Microsoft.Network/publicIpAddresses",
                 "Microsoft.Network/networkInterfaces",
                 "Microsoft.Network/virtualNetworks",
-                "Microsoft.Compute/virtualMachines/extensions"
+                "Microsoft.Compute/virtualMachines/extensions",
+                "Microsoft.Compute/disks"
             ]
         },
         "allowedVmSkus": {
