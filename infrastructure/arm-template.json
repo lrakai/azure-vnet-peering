@@ -46,18 +46,6 @@
             "type": "string",
             "defaultValue": "10.0.0.0/24"
         },
-        "publicIpAddressName": {
-            "type": "string",
-            "defaultValue": "shared-vm-ip"
-        },
-        "publicIpAddressType": {
-            "type": "string",
-            "defaultValue": "Dynamic"
-        },
-        "publicIpAddressSku": {
-            "type": "string",
-            "defaultValue": "Basic"
-        },
         "virtualMachineName": {
             "type": "string",
             "defaultValue": "shared-vm"
@@ -105,8 +93,7 @@
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]",
-                "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
-                "[concat('Microsoft.Network/publicIpAddresses/', parameters('publicIpAddressName'))]"
+                "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
             ],
             "properties": {
                 "ipConfigurations": [
@@ -116,10 +103,8 @@
                             "subnet": {
                                 "id": "[variables('subnetRef')]"
                             },
-                            "privateIPAllocationMethod": "Dynamic",
-                            "publicIpAddress": {
-                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
-                            }
+                            "privateIPAllocationMethod": "Static",
+                            "privateIPAddress": "10.0.0.100"
                         }
                     }
                 ],
@@ -162,21 +147,6 @@
                         }
                     }
                 ]
-            },
-            "tags": {
-                "Department": "Shared"
-            }
-        },
-        {
-            "name": "[parameters('publicIpAddressName')]",
-            "type": "Microsoft.Network/publicIpAddresses",
-            "apiVersion": "2018-08-01",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "publicIpAllocationMethod": "[parameters('publicIpAddressType')]"
-            },
-            "sku": {
-                "name": "[parameters('publicIpAddressSku')]"
             },
             "tags": {
                 "Department": "Shared"
