@@ -1,4 +1,4 @@
-$Lab="vnet-peering-lab"
+$Lab="vnet-peer-lab"
 $Region="WestUS2"
 Login-AzureRmAccount
 New-AzureRmResourceGroup -Name $Lab -Location $Region
