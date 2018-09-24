@@ -2,6 +2,8 @@
 
 Demonstration of configuring peering between two VNets in Azure
 
+![Final Environment](https://user-images.githubusercontent.com/3911650/45935836-cb1f4f00-bf6c-11e8-96f0-79e66d501f7a.png)
+
 ## Getting Started
 
 An Azure RM template is included in `infrastructure/` to create the environment:
