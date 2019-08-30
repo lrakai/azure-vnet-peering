@@ -1,2 +1,2 @@
-$Lab=vnet-peer-lab
+$Lab="vnet-peer-lab"
 Remove-AzureRmResourceGroup -Force -Name $Lab
